@@ -110,8 +110,10 @@ jobs:
           pip install --upgrade coveralls
           pip freeze
       - name: Run unit tests
+        env:
+          OMP_NUM_THREADS: 1
         run: |
-          pytest -vs --cov=pyro --cov-config .coveragerc --stage unit --durations 20
+          pytest -vs -n auto --dist worksteal --cov=pyro --cov-config .coveragerc --stage unit --durations 20
       - name: Submit to coveralls
         run: coveralls --service=github || true
         env:
@@ -178,8 +180,10 @@ jobs:
           pip install --upgrade coveralls
           pip freeze
       - name: Run integration test (batch 1)
+        env:
+          OMP_NUM_THREADS: 1
         run: |
-          pytest -vs --cov=pyro --cov-config .coveragerc --stage integration_batch_1 --durations 10
+          pytest -vs -n auto --dist worksteal --cov=pyro --cov-config .coveragerc --stage integration_batch_1 --durations 10
       - name: Submit to coveralls
         run: coveralls --service=github || true
         env:
@@ -210,8 +214,10 @@ jobs:
           pip install --upgrade coveralls
           pip freeze
       - name: Run integration test (batch 2)
+        env:
+          OMP_NUM_THREADS: 1
         run: |
-          pytest -vs --cov=pyro --cov-config .coveragerc --stage integration_batch_2 --durations 10
+          pytest -vs -n auto --dist worksteal --cov=pyro --cov-config .coveragerc --stage integration_batch_2 --durations 10
       - name: Submit to coveralls
         run: coveralls --service=github || true
         env:
