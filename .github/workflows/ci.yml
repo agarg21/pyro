@@ -110,7 +110,7 @@ jobs:
         env:
           OMP_NUM_THREADS: 1
         run: |
-          pytest -vs -n auto --dist worksteal --cov=pyro --cov-config .coveragerc --stage unit --durations 20
+          pytest -vs -n logical --dist worksteal --cov=pyro --cov-config .coveragerc --stage unit --durations 20
       - name: Submit to coveralls
         run: coveralls --service=github || true
         env:
@@ -180,7 +180,7 @@ jobs:
         env:
           OMP_NUM_THREADS: 1
         run: |
-          pytest -vs -n auto --dist worksteal --cov=pyro --cov-config .coveragerc --stage integration_batch_1 --durations 10
+          pytest -vs -n logical --dist worksteal --cov=pyro --cov-config .coveragerc --stage integration_batch_1 --durations 10
       - name: Submit to coveralls
         run: coveralls --service=github || true
         env:
@@ -214,7 +214,7 @@ jobs:
         env:
           OMP_NUM_THREADS: 1
         run: |
-          pytest -vs -n auto --dist worksteal --cov=pyro --cov-config .coveragerc --stage integration_batch_2 --durations 10
+          pytest -vs -n logical --dist worksteal --cov=pyro --cov-config .coveragerc --stage integration_batch_2 --durations 10
       - name: Submit to coveralls
         run: coveralls --service=github || true
         env:

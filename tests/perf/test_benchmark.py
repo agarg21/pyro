@@ -31,8 +31,7 @@ ROOT_DIR = os.path.abspath(
     os.path.join(os.path.dirname(__file__), os.pardir, os.pardir)
 )
 PROF_DIR = os.path.join(ROOT_DIR, ".benchmarks")
-if not os.path.exists(PROF_DIR):
-    os.makedirs(PROF_DIR)
+os.makedirs(PROF_DIR, exist_ok=True)
 
 
 def register_model(**model_kwargs):
