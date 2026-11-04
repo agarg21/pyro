@@ -15,7 +15,7 @@ env:
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
         python-version: [3.12]
@@ -33,7 +33,7 @@ jobs:
       run: |
         make lint
   docs:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: lint
     strategy:
       matrix:
@@ -60,7 +60,7 @@ jobs:
           make docs
           make doctest
   tutorials-html:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: lint
     strategy:
       matrix:
@@ -86,7 +86,7 @@ jobs:
         run: |
           SPHINXOPTS="-E" make tutorial
   unit:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: docs
     strategy:
       matrix:
@@ -118,7 +118,7 @@ jobs:
           COVERALLS_PARALLEL: true
           COVERALLS_FLAG_NAME: ${{ matrix.test-name }}
   examples:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: [docs, tutorials-html]
     strategy:
       matrix:
@@ -154,7 +154,7 @@ jobs:
           COVERALLS_PARALLEL: true
           COVERALLS_FLAG_NAME: ${{ matrix.test-name }}
   integration_1:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: docs
     strategy:
       matrix:
@@ -186,7 +186,7 @@ jobs:
           COVERALLS_PARALLEL: true
           COVERALLS_FLAG_NAME: ${{ matrix.test-name }}
   integration_2:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: docs
     strategy:
       matrix:
@@ -218,7 +218,7 @@ jobs:
           COVERALLS_PARALLEL: true
           COVERALLS_FLAG_NAME: ${{ matrix.test-name }}
   funsor:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: docs
     strategy:
       matrix:
@@ -252,7 +252,7 @@ jobs:
           COVERALLS_FLAG_NAME: ${{ matrix.test-name }}
   finish:
     needs: [unit, examples, integration_1, integration_2, funsor]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
         python-version: [3.12]
